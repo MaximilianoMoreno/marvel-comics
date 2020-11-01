@@ -1,39 +1,40 @@
 <div id="detail">
+  <a [routerLink]="['/'] "class="back">
+    <span class="material-icons" id="back-btn">
+      keyboard_arrow_left
+      </span>
+  </a>
 
-  <div class=".container-fluid">
+  <div class="row" *ngIf="comicDetail">
+    <div class="col-md-5 img-container" >
+      <div class="blurred-bg" [ngStyle]="{'background-image': 'url(' + comicDetail.thumbnailURL +')'}"></div>
+      <img [src]="comicDetail.thumbnailURL" alt="" class="image">
+    </div>
 
-    <a [routerLink]="['/' ]"class="btn back">&lt;</a>
+    <div class="col-md-7 comic-info">
+        <div class="comic-title">
+          <h1>{{comicDetail.title}}</h1>
+        </div>
+        <div class="comic-data">
+          <p class="data-title">Creators<p>
 
-    <div class="row" *ngIf="comicDetail">
-      <div class="col-md-5 img-container" >
-        <div class="blurred-bg" [ngStyle]="{'background-image': 'url(' + comicDetail.thumbnailURL +')'}"></div>
-        <img [src]="comicDetail.thumbnailURL" alt="" class="image">
-      </div>
+          <ul class="data-list">
+            <li *ngFor="let creator of comicDetail.creators?.items">
+              {{creator.name}}
+            </li>
+          </ul>
 
-      <div class="col-md-7 comic-info">
-          <div class="comic-title">
-            <h1>{{comicDetail.title}}</h1>
-          </div>
-          <div class="comic-data">
-            <h3>Creators</h3>
-            <ul>
-              <li *ngFor="let creator of comicDetail.creators?.items">
-                {{creator.name}}
-              </li>
-            </ul>
-            <h3>Stories</h3>
-            <ul>
-              <li *ngFor="let story of comicDetail.stories?.items">
-                {{story.name}}
-              </li>
-            </ul>
-          </div>
+          <p class="data-title">Stories<p>
 
-      </div>
+          <ul class="data-list">
+            <li *ngFor="let story of comicDetail.stories?.items">
+              {{story.name}}
+            </li>
+          </ul>
+        </div>
 
     </div>
 
   </div>
-
 </div>
 
