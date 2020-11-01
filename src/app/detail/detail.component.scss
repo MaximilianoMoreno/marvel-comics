@@ -1,0 +1,57 @@
+@import '../../styles/variables.scss';
+
+div#detail {
+  position: relative;
+  min-height: 100vh;
+  background-color: $component-background-color;
+
+  button.back{
+    color: $primary-text-color;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    margin: 0 1%;
+  }
+
+  .img-container{
+
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    perspective: 1000px;
+
+    .blurred-bg{
+      filter: blur(8px);
+      -webkit-filter: blur(8px);
+    }
+
+    .image {
+      transform-origin: left;
+      transform: translate(22%, -5%) rotateY(15deg);
+      height: 100%;
+      filter: blur(0);
+      -webkit-filter: blur(0);
+    }
+  }
+
+  .comic-info{
+
+    .comic-title{
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40vh;
+      background-color: $component-background-color;
+      color: $primary-text-color;
+    }
+    div.comic-data{
+      height: 60vh;
+      background-color: $primary-background-color;
+    }
+  }
+
+
+}

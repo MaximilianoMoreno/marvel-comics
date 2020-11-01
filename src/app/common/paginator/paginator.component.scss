@@ -1,0 +1,43 @@
+@import '../../../styles/variables.scss';
+
+.paginator {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $primary-color;
+  bottom: 0;
+  width: 100%;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+     li {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin: 0 5px ;
+      color: $primary-text-color;
+      font-size:  2rem;
+      min-width: 2rem;
+
+
+      &.active {
+        background-color: $component-background-color;
+        box-shadow: 6px 0 9px 0px rgba(43, 45, 48, 0.8), -6px 0 9px 0px rgba(43, 45, 48, 0.8);
+
+        a {
+          cursor: not-allowed;
+        }
+      }
+
+      a {
+        cursor: pointer;
+      }
+     }
+  }
+
+}

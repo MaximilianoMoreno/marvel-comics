@@ -1,0 +1,36 @@
+
+<nav class="paginator" aria-label="Comics page navigation">
+
+    <!-- pager -->
+    <ul *ngIf="totalResults">
+        <li *ngIf="currentPage !== 1">
+            <a (click)="setPage(1)">&lt;&lt;</a>
+        </li>
+        <li *ngIf="currentPage !== 1">
+            <a (click)="setPage(currentPage - 1)">&lt;</a>
+        </li>
+        <li *ngFor="let page of pagedItems; let index" [ngClass]="{active:currentPage === page}">
+            <a (click)="setPage(index )">{{index }} </a>
+        </li>
+
+        <!--<li *ngIf="(pager.startPage  + 5) <= pager.totalPages">-->
+        <!--    <a (click)="setPage(pager.currentPage + 5)">...</a>-->
+        <!--</li>-->
+        <!-- <li *ngIf="(pager.startPage  + 5) <= pager.totalPages" >-->
+        <!--    <a (click)="setPage(pager.totalPages)">{{pager.totalPages}}</a>-->
+        <!--</li>-->
+        <li *ngIf="(totalPages - startPage) > 5 ">
+            <a (click)="setPage(startPage + 5)">...</a>
+        </li>
+          <li *ngIf="(totalPages - startPage) > 5" >
+            <a (click)="setPage(totalPages)">{{totalPages}}</a>
+        </li>
+
+        <li *ngIf="currentPage !== totalPages">
+            <a (click)="setPage(currentPage + 1)">&gt;</a>
+        </li>
+        <li *ngIf="currentPage !== totalPages">
+            <a (click)="setPage(totalPages)">&gt;&gt;</a>
+        </li>
+    </ul>
+  </nav>
