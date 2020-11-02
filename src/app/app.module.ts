@@ -8,13 +8,14 @@ import { HomeComponent } from './home/home.component';
 import { DetailComponent } from './detail/detail.component';
 import { HeaderComponent } from './common/header/header.component';
 import { PaginatorComponent } from './common/paginator/paginator.component';
-import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestCache } from './interceptors/request-cache.service';
+import { CachingInterceptor } from './interceptors/caching.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, DetailComponent, HeaderComponent, PaginatorComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HttpClientModule, NgbModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HttpClientModule],
+  providers: [RequestCache, { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
