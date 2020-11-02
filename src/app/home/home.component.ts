@@ -27,16 +27,16 @@ export class HomeComponent implements OnInit {
 
   private getComicsList(offset = 0): void {
     this.loadingService.activateOverlay(`Getting Comics ${offset ? 'page ' + offset / 10 : 'list'}`);
-    // this.comicsService
-    //   .getComicsList(offset)
-    //   .pipe(
-    //     finalize(() => {
-    //       this.loadingService.deactivateOverlay();
-    //     })
-    //   )
-    //   .subscribe((response) => {
-    //     this.response = response;
-    //     this.comicsList = response.results;
-    //   });
+    this.comicsService
+      .getComicsList(offset)
+      .pipe(
+        finalize(() => {
+          this.loadingService.deactivateOverlay();
+        })
+      )
+      .subscribe((response) => {
+        this.response = response;
+        this.comicsList = response.results;
+      });
   }
 }
