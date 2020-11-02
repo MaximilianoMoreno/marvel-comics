@@ -1,11 +1,11 @@
-import { Component, Input, OnInit,Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-paginator',
   templateUrl: './paginator.component.html',
-  styleUrls: ['./paginator.component.scss']
+  styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent implements OnInit, OnChanges {
   @Input() totalResults: number;
   @Output() pageEvent = new EventEmitter<any>();
 
@@ -19,28 +19,25 @@ export class PaginatorComponent implements OnInit {
   pageSize = 10;
   currentOffset = 0;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-
+  ngOnChanges(changes: SimpleChanges): void {
+    this.totalPages = Math.trunc(this.totalResults / this.pageSize);
+    this.pages = Array(this.totalPages)
+      .fill(0)
+      .map((x, i) => i + 1);
+    this.pagedItems = this.pages.slice(this.startPage - 1, this.startPage + 4);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.totalPages = Math.trunc (this.totalResults / this.pageSize);
-    this.pages = Array(this.totalPages).fill(0).map((x,i)=>i + 1);
-    this.pagedItems = this.pages.slice(this.startPage - 1, this.startPage + 4);
-
-}
-
-  onChangeEvent($event){
+  onChangeEvent($event): void {
     this.pageEvent.emit($event);
   }
 
-  setPage(pageIndex: number) {
-
+  setPage(pageIndex: number): void {
     if (pageIndex < 1 || pageIndex > this.totalResults) {
-        return;
+      return;
     }
     this.currentPage = pageIndex;
     if (this.pages.length <= 5) {
@@ -49,20 +46,18 @@ export class PaginatorComponent implements OnInit {
       if (this.currentPage + 1 >= this.pages.length) {
         this.startPage = this.totalPages - 4;
       } else {
-        if((this.totalPages - (this.currentPage - 2)) == 5) {
+        if (this.totalPages - (this.currentPage - 2) === 5) {
           this.startPage = this.currentPage - 1;
         } else {
-          this.startPage = (this.currentPage - 2 >= 1) ? (this.currentPage - 2) : 0;
+          this.startPage = this.currentPage - 2 >= 1 ? this.currentPage - 2 : 0;
         }
       }
     }
     this.pagedItems = this.pages.slice(this.startPage, pageIndex + 3);
 
-    this.pageEvent.emit(
-      {
-        pageIndex,
-        pageSize: this.pageSize
-      }
-    );
-}
+    this.pageEvent.emit({
+      pageIndex,
+      pageSize: this.pageSize,
+    });
+  }
 }

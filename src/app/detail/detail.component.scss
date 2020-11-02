@@ -18,6 +18,7 @@ div#detail {
 
   .img-container {
     perspective: 1000px;
+    height: 100vh;
 
     a.back {
       color: $primary-text-color;
@@ -27,21 +28,23 @@ div#detail {
       filter: blur(8px);
       -webkit-filter: blur(8px);
       height: 100%;
+      width: 100%;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
     }
 
     .image {
-      transform: translate(22%, 0) rotateY(15deg);
+      transform: rotateY(15deg);
       height: 90vh;
-      top: 1%;
+      top: 1vh;
+      left: 9vw;
       position: absolute;
     }
   }
 
   .comic-info {
-    height: 100vh;
+    height: 100%;
 
     .comic-title {
       display: flex;
@@ -76,12 +79,11 @@ div#detail {
           height: 2rem;
           background: $list-highlight-dark;
 
-          &:nth-child(odd) { background: $list-highlight-light }
+          &:nth-child(odd) {
+            background: $list-highlight-light;
+          }
         }
       }
-
     }
   }
-
-
 }
