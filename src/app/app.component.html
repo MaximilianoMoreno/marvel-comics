@@ -1,2 +1,10 @@
-
 <router-outlet></router-outlet>
+
+<div id="loadingOverlay" class="overlay" *ngIf="loadingService.isOverlayActive()"></div>
+
+<div class="loading-indicator-container" *ngIf="loadingService.isOverlayActive()">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <span class="loading-text">{{ loadingService.getLoadingMessage() }}...</span>
+</div>

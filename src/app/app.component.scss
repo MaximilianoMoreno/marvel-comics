@@ -1,0 +1,33 @@
+@import '../styles/variables.scss';
+
+.overlay {
+  background: none repeat scroll 0 0 #eeeeee;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  filter: alpha(opacity = 60);
+  opacity: 0.6;
+  z-index: 1000000;
+}
+
+.loading-indicator-container {
+  color: $secondary-text-color;
+  z-index: 1009999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .spinner-border {
+    margin-right: 1rem;
+  }
+
+  .loading-text {
+    margin-left: 1 rem;
+    font-size: 1.5rem;
+    margin: 0 auto;
+  }
+}

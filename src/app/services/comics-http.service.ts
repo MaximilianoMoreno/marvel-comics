@@ -15,7 +15,7 @@ export class ComicsHTTPService {
   private HASH = 'b9684948fe5316cfef2e74ff0ff98e88';
   private API_KEY = '7cc3eb04ddde3d5908c75598f694ef48';
   private comicsUrl = `https://gateway.marvel.com:443/v1/public/comics?limit=10&ts=1&apikey=
-  ${this.API_KEY}&hash=${this.HASH}`;
+${this.API_KEY}&hash=${this.HASH}`;
 
   constructor(private http: HttpClient) {}
 
