@@ -8,7 +8,7 @@ import { tap } from 'rxjs/operators';
 export class CachingInterceptor implements HttpInterceptor {
   constructor(private cache: RequestCache) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEven<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const cachedResponse = this.cache.get(req);
     return cachedResponse ? of(cachedResponse) : this.sendRequest(req, next, this.cache);
   }

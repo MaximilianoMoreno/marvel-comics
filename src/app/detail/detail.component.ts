@@ -35,8 +35,6 @@ export class DetailComponent implements OnInit {
         )
         .subscribe(
           (response) => {
-            console.log('---------Response');
-            console.log(response);
             this.comicDetail = response?.results[0] || ({} as IComic);
           },
           (error) => {
