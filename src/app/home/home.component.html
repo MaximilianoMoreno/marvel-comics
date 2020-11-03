@@ -1,7 +1,7 @@
 <div id="page-container">
   <app-header> </app-header>
   <div class="container-fluid">
-    <div class="row cards-list">
+    <div class="row cards-list" *ngIf="!hasError">
       <div *ngFor="let comic of comicsList; index as i" [ngClass]="{ 'offset-md-1': i % 5 === 0 }" class="col col-md-2">
         <div class="comic-card">
           <img [src]="comic.thumbnailURL" class="image" alt="" />
@@ -18,4 +18,10 @@
   </div>
 
   <app-paginator [totalResults]="response?.total" (pageEvent)="onPaginationChange($event)"></app-paginator>
+
+  <div class="row" *ngIf="hasError">
+    <div class="col-sm-12 error-message">
+      <h1>Sorry, there seems to be something wrong, please try again later</h1>
+    </div>
+  </div>
 </div>

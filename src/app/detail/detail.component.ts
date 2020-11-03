@@ -12,6 +12,7 @@ import { LoadingService } from '../services/loading.service';
 })
 export class DetailComponent implements OnInit {
   comicId = '';
+  hasError: boolean;
   comicDetail: IComic;
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +22,7 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
+      this.hasError = false;
       const idKey = 'id';
       this.comicId = params[idKey];
       this.loadingService.activateOverlay('Getting Comic details');
@@ -31,11 +33,23 @@ export class DetailComponent implements OnInit {
             this.loadingService.deactivateOverlay();
           })
         )
-        .subscribe((response) => {
-          console.log('---------Response');
-          console.log(response);
-          this.comicDetail = response?.results[0] || ({} as IComic);
-        });
+        .subscribe(
+          (response) => {
+            console.log('---------Response');
+            console.log(response);
+            this.comicDetail = response?.results[0] || ({} as IComic);
+          },
+          (error) => {
+            console.log(
+              'Error retrieving Comic detail' +
+                (error.status ? ', status: ' + error.status : '') +
+                (error.statusText ? ', statusText: ' + error.statusText : '') +
+                '.'
+            );
+            this.hasError = true;
+          },
+          () => {}
+        );
     });
   }
 }

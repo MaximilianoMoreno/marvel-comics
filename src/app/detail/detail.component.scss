@@ -17,6 +17,14 @@ div#detail {
     }
   }
 
+  .error-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    color: $primary-text-color;
+  }
+
   .img-container {
     perspective: 1000px;
     height: 100vh;

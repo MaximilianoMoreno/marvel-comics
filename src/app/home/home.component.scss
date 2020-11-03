@@ -5,10 +5,18 @@
   min-height: 100vh;
   background-color: $component-background-color;
 
-  .cards-list{
+  .error-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    color: $primary-text-color;
+  }
+
+  .cards-list {
     padding: 2.5rem 0;
 
-    .comic-card{
+    .comic-card {
       margin: 1rem 0;
 
       .image {
@@ -28,7 +36,7 @@
         height: 100%;
         width: 100%;
         opacity: 0;
-        transition: .5s ease;
+        transition: 0.5s ease;
         background-color: $component-background-color;
       }
 
@@ -47,13 +55,10 @@
         transform: translate(-50%, -50%);
         text-align: center;
 
-        a{
+        a {
           color: $primary-text-color;
         }
       }
     }
   }
-
-
 }
-

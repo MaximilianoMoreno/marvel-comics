@@ -3,7 +3,7 @@
     <span class="material-icons" id="back-btn"> keyboard_arrow_left </span>
   </a>
 
-  <div class="row" *ngIf="comicDetail">
+  <div class="row" *ngIf="comicDetail && !hasError">
     <div class="col-lg-5 col-md-12 img-container">
       <div class="blurred-bg" [ngStyle]="{ 'background-image': 'url(' + comicDetail.thumbnailURL + ')' }"></div>
       <img [src]="comicDetail.thumbnailURL" alt="" class="image" />
@@ -32,6 +32,12 @@
           </li>
         </ul>
       </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="hasError">
+    <div class="col-sm-12 error-message">
+      <h1>Sorry, there seems to be something wrong, please try again later</h1>
     </div>
   </div>
 </div>

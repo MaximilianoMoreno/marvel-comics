@@ -14,9 +14,11 @@ export class HomeComponent implements OnInit {
   comicsList: IComic[];
   response: IComicsResponse;
   currentPage = 1;
+  hasError: boolean;
   constructor(private comicsService: ComicsService, private loadingService: LoadingService) {}
 
   ngOnInit(): void {
+    this.hasError = false;
     this.getComicsList();
   }
 
@@ -33,9 +35,21 @@ export class HomeComponent implements OnInit {
           this.loadingService.deactivateOverlay();
         })
       )
-      .subscribe((response) => {
-        this.response = response;
-        this.comicsList = response.results;
-      });
+      .subscribe(
+        (response) => {
+          this.response = response;
+          this.comicsList = response.results;
+        },
+        (error) => {
+          console.log(
+            'Error retrieving Comic detail' +
+              (error.status ? ', status: ' + error.status : '') +
+              (error.statusText ? ', statusText: ' + error.statusText : '') +
+              '.'
+          );
+          this.hasError = true;
+        },
+        () => {}
+      );
   }
 }
