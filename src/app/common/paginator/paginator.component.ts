@@ -24,15 +24,11 @@ export class PaginatorComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.totalPages = Math.trunc(this.totalResults / this.pageSize);
+    this.totalPages = Math.trunc(this.totalResults / this.pageSize) || 0;
     this.pages = Array(this.totalPages)
       .fill(0)
       .map((x, i) => i + 1);
     this.pagedItems = this.pages.slice(this.startPage - 1, this.startPage + 4);
-  }
-
-  onChangeEvent($event): void {
-    this.pageEvent.emit($event);
   }
 
   setPage(pageIndex: number): void {
@@ -40,6 +36,16 @@ export class PaginatorComponent implements OnInit, OnChanges {
       return;
     }
     this.currentPage = pageIndex;
+
+    this.getPagesToDisplay(pageIndex);
+
+    this.pageEvent.emit({
+      pageIndex,
+      pageSize: this.pageSize,
+    });
+  }
+
+  private getPagesToDisplay(pageIndex: number): void {
     if (this.pages.length <= 5) {
       this.startPage = 1;
     } else {
@@ -54,10 +60,5 @@ export class PaginatorComponent implements OnInit, OnChanges {
       }
     }
     this.pagedItems = this.pages.slice(this.startPage, pageIndex + 3);
-
-    this.pageEvent.emit({
-      pageIndex,
-      pageSize: this.pageSize,
-    });
   }
 }

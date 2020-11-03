@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { IComic } from '../models/comic';
 import { IComicsResponse } from '../models/response';

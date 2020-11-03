@@ -11,7 +11,7 @@ export class AppComponent {
 
   loadingService: LoadingService;
 
-  constructor(private _loadingService: LoadingService) {
-    this.loadingService = this._loadingService;
+  constructor(private injectedLoadingService: LoadingService) {
+    this.loadingService = this.injectedLoadingService;
   }
 }

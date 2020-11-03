@@ -32,7 +32,9 @@ export class DetailComponent implements OnInit {
           })
         )
         .subscribe((response) => {
-          this.comicDetail = response.results[0];
+          console.log('---------Response');
+          console.log(response);
+          this.comicDetail = response?.results[0] || ({} as IComic);
         });
     });
   }

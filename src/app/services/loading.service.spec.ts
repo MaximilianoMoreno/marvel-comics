@@ -11,7 +11,7 @@ describe('LoadingService', () => {
       providers: [LoadingService],
     });
 
-    loadingService = TestBed.get(LoadingService);
+    loadingService = TestBed.inject(LoadingService);
   });
 
   it('should create an instance', () => {

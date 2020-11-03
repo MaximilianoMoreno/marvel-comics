@@ -20,7 +20,7 @@ export class LoadingService {
     return this.loadingMessage;
   }
 
-  activateOverlay(message?: string) {
+  activateOverlay(message?: string): void {
     // If the user supplies a loading message, then use it, otherwise
     // show the default text string
     //
@@ -29,7 +29,7 @@ export class LoadingService {
     this.overlayActive = true;
   }
 
-  deactivateOverlay() {
+  deactivateOverlay(): void {
     // Reset the loading message if there is any artifact residual
     //
     this.loadingMessage = '';
